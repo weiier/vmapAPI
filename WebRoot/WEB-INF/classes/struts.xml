@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="action,do,xml,json," />
+	<constant name="com.opensymphony.xwork2.objectFactory" value="spring"></constant>
+    <!-- 
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+	<package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>
+        </action>
+    </package>
+	 -->
+
+	 <constant name="struts.devMode" value="true" />
+	<!-- <package name="front" namespace="/" extends="struts-default">
+        
+        <action name="index"  class="com.structs2.front.action.IndexAction1">
+            <result name="success">/t.jsp</result>
+            <result name="error">/IndexAction1.jsp</result>
+        </action>
+    </package> -->
+    <!-- 日志文件存放路径 -->
+    <constant name="logPath" value="C:/buptMap/log/"></constant>
+    
+    <package name="front" namespace="/" extends="json-default">
+        <interceptors>  
+            <interceptor name="annotationInterceptor" class="com.opensymphony.xwork2.interceptor.annotations.AnnotationWorkflowInterceptor"></interceptor> 
+            <interceptor-stack name="annotatedStack">
+           		<interceptor-ref name="annotationInterceptor"/>
+           		<interceptor-ref name="defaultStack"/>
+           </interceptor-stack> 
+        </interceptors>  
+        
+        <action name="field"  class="com.buptmap.action.ViewFieldLevelAction">
+            <result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="update"  class="com.buptmap.action.UpdateAction">
+            <result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="province"  class="com.buptmap.action.ProvinceAction">
+            <result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="place"  class="com.buptmap.action.PlaceAction">
+            <param name="logPath">D:/buptMap/log/</param>
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+         <action name="unit"  class="com.buptmap.action.UnitAction">
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+         <action name="change"  class="com.buptmap.action.ChangeAction">
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+           <action name="upda"  class="com.buptmap.action.UpdaAction">
+            <result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="floor"  class="com.buptmap.action.FloorAction">
+            <param name="logPath">D:/buptMap/log/</param>
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="spot"  class="com.buptmap.action.SpotAction">
+        	<param name="callbackParameter">jsoncallback</param>
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="gps"  class="com.buptmap.action.GPSAction">
+        	<param name="callbackParameter">jsoncallback</param>
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="map"  class="com.buptmap.action.MapAction">
+            <param name="logPath">D:/buptMap/log/</param>
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<result name="IMAGE">/map.jsp</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="showMap" class="com.buptmap.action.MapAction" method="showImage">
+        	
+            	 
+            	 <param name="callbackParameter">jsoncallback</param>
+        	
+        </action>
+        
+        <action name="showMapTest" class="com.buptmap.action.MapAction" method="showImageTest">
+        	<param name="callbackParameter">jsoncallback</param>
+        </action>
+        
+        <action name="position"  class="com.buptmap.action.PositionAction">
+            <param name="logPath">D:/buptMap/log/</param>
+        	<result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="base"  class="com.buptmap.action.BaseAction">
+        	<interceptor-ref name="annotatedStack"/>
+        </action>
+        
+        <action name="test" class="com.buptmap.action.TestAction">
+            <result type="json">
+            	 <param name="root">resultObj</param>
+            	 <param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+        
+        <action name="testPalace" class="com.buptmap.action.TestPalceAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+        <action name="proxy" class="com.buptmap.action.ProxyAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+        <action name="company" class="com.buptmap.action.CompanyAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+        
+        <action name="lease" class="com.buptmap.action.LeaseAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+        
+        <action name="insert" class="com.buptmap.action.InsertAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+         <action name="edit" class="com.buptmap.action.EditAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+         <action name="apply" class="com.buptmap.action.ApplyAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+         <action name="download" class="com.buptmap.action.DownloadAction">
+        	<result type="json">
+        		<param name="root">resultObj</param>
+        		<param name="callbackParameter">jsoncallback</param>
+        	</result>
+        </action>
+         <action name="downfile" class="com.buptmap.action.DownfileAction">  
+         	<param name="inputPath">D:\111.xls</param>
+            <result name="success" type="stream">  
+                <param name="contentType">application/vnd.ms-excel</param>  
+                <param name="contentDisposition">filename="total.xls"</param>  
+                <param name="inputName">targetFile</param>   
+                <param name="buffserSize">4096</param>        
+            </result>  
+        </action>  
+        
+    </package>
+    
+    <!-- <include file="example.xml"/> -->
+
+    <!-- Add packages here -->
+
+</struts>

@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/com/buptmap/DAO/PlaceDAO.java=UTF-8
+encoding//src/com/buptmap/DAO/SpotDAO.java=UTF-8
+encoding//src/com/buptmap/DAO/SpotNDAO.java=UTF-8
+encoding//src/com/buptmap/action/FloorAction.java=UTF-8
+encoding//src/com/buptmap/action/MapAction.java=UTF-8
+encoding//src/com/buptmap/action/PlaceAction.java=UTF-8
+encoding//src/com/buptmap/action/PositionAction.java=UTF-8
+encoding//src/com/buptmap/action/ProvinceAction.java=UTF-8
+encoding//src/com/buptmap/action/SpotAction.java=UTF-8
+encoding//src/com/buptmap/util/LogUtil.java=UTF-8
+encoding/<project>=UTF-8

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+           
+     <context:annotation-config />
+     <context:component-scan base-package="com.buptmap" />
+     
+     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  	 	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		
+   		
+   		<property name="url" value="jdbc:mysql://123.57.46.160:3306/shopmanagement?useUnicode=true&amp;characterEncoding=utf8"/>
+     	<property name="username" value="root"/>
+     	<property name="password" value="M@pNext2014"/>
+     	<!--  
+     	<property name="url" value="jdbc:mysql://localhost:3306/appdb?useUnicode=true&amp;characterEncoding=utf8"/>
+     	<property name="username" value="root"/>
+     	<property name="password" value="root"/>
+     	-->
+	 </bean>
+	 <!-- .LocalSessionFactoryBean -->
+	 <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+     	<property name="dataSource" ref="dataSource"/>
+     	<property name="packagesToScan" value="com.buptmap">
+     	</property>
+     	<property name="annotatedClasses">
+        	<list>
+            	<value>com.buptmap.model.Province</value>
+            	<value>com.buptmap.model.Place</value>
+            	<value>com.buptmap.model.Floor</value>
+            	<value>com.buptmap.model.Spot</value>
+            	<value>com.buptmap.model.Map</value>
+            	<value>com.buptmap.model.Position</value>
+            	<value>com.buptmap.model.ViewFieldLevel</value>
+            	<value>com.buptmap.model.User</value>
+            	<value>com.buptmap.model.KeyTable</value>
+            	<value>com.buptmap.model.Api</value>
+            	<value>com.buptmap.model.Mall</value>
+            	<value>com.buptmap.model.City</value>
+            	<value>com.buptmap.model.Db</value>
+            	<value>com.buptmap.model.Unit</value>
+            	<value>com.buptmap.model.Units</value>
+              	<value>com.buptmap.model.UnitChange</value>     	          	
+            	<value>com.buptmap.model.Version</value>
+            	<value>com.buptmap.model.Poi</value>
+            	<value>com.buptmap.model.PoiChange</value>
+             	<value>com.buptmap.model.Indoor</value>
+             	<value>com.buptmap.model.IndoorChange</value>
+             	<value>com.buptmap.model.Proxy</value>
+             	<value>com.buptmap.model.Company</value>
+             	<value>com.buptmap.model.Admin</value>
+             	<value>com.buptmap.model.Apply</value>
+             	<value>com.buptmap.model.Block</value>
+             	<value>com.buptmap.model.Lease</value>
+            </list>
+      	</property>
+    	<property name="hibernateProperties">
+      		<value>
+        		hibernate.dialect=org.hibernate.dialect.MySQLDialect
+        		hibernate.show_sql=false
+        		hibernate.format_sql=false
+        		hibernate.optimistic-lock=all
+        		hibernate.hbm2ddl.auto=update
+        		<!-- hibernate.query.factory_class=org.hibernate.hql.classic.ClassicQueryTranslatorFactory -->
+      		</value>
+    	</property>
+  	 </bean>
+  	 <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+  	 	<property name="sessionFactory" ref="sessionFactory"/>
+  	 </bean>
+  	 <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+   		<property name="sessionFactory" ref="sessionFactory"/>
+     </bean>
+  <!-- <bean id="tDAO" class="com.buptmap.dao.TeacherDAO" />
+	
+  <bean id="tService" class="com.buptmap.service.TeacherService">
+  	<property name="teacherDAO" ref="tDAO" />
+  </bean> -->
+
+  <!-- more bean definitions go here -->
+
+</beans>
